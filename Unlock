@@ -1,1 +1,10 @@
+let body = $response.body;
+let obj = JSON.parse(body);
 
+// 直接修改视频 URL，确保可以播放
+if (obj.data && obj.data.video_url) {
+    obj.data.video_url = obj.data.video_url.replace("vip-only", "free");  // 解锁 VIP 播放限制
+}
+
+// 返回修改后的 JSON
+$done({ body: JSON.stringify(obj) });
